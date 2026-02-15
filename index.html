@@ -1,0 +1,625 @@
+<!DOCTYPE html><html lang="he" dir="rtl"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ביוטי פלזמה | לימודי פלזמה</title>
+  <meta name="description" content="בית - ביוטי פלזמה provides professional חינוך ומדע services. Specializing in לימודי פלזמה.">
+  <meta name="keywords" content="לימודי פלזמה, קורס פלזמה למכוני יופי, לימוד טיפול פלזמה פן ישראל, הכשרה פלזמה פיברובלסט, לימודי פלזמה">
+  <meta name="robots" content="index, follow">
+  
+  <meta property="og:title" content="ביוטי פלזמה | לימודי פלזמה">
+  <meta property="og:description" content="בית - ביוטי פלזמה provides professional חינוך ומדע services. Specializing in לימודי פלזמה.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ביוטי פלזמה | לימודי פלזמה">
+  <meta name="twitter:description" content="בית - ביוטי פלזמה provides professional חינוך ומדע services. Specializing in לימודי פלזמה.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
+    <!-- Mickidum Accessibility Toolbar -->
+    <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
+<!-- Zappy Analytics -->
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration
+  var config = {
+    websiteId: '00f7f3b5-1a8b-49a9-bdcf-6085068bf471',
+    apiUrl: 'https://api.zappy5.com/api/analytics/track',
+    sessionDuration: 30 * 60 * 1000, // 30 minutes
+    visitorDuration: 30 * 24 * 60 * 60 * 1000, // 30 days
+    trackPageViews: true,
+    trackClicks: true,
+    trackFormSubmissions: true
+  };
+  
+  // Generate or retrieve persistent visitor ID (30 days)
+  function getVisitorId() {
+    var visitorKey = 'zappy_visitor_' + config.websiteId;
+    var visitor = null;
+    
+    try {
+      visitor = localStorage.getItem(visitorKey);
+      if (visitor) {
+        var visitorData = JSON.parse(visitor);
+        var now = Date.now();
+        
+        // Check if visitor ID is still valid (30 days)
+        if (now - visitorData.created < config.visitorDuration) {
+          // Update last seen timestamp
+          visitorData.lastSeen = now;
+          localStorage.setItem(visitorKey, JSON.stringify(visitorData));
+          return visitorData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: LocalStorage not available');
+    }
+    
+    // Generate new visitor ID
+    var newVisitorId = 'zv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      localStorage.setItem(visitorKey, JSON.stringify({
+        id: newVisitorId,
+        created: Date.now(),
+        lastSeen: Date.now()
+      }));
+    } catch (e) {
+      // Continue without local storage
+    }
+    
+    return newVisitorId;
+  }
+  
+  // Generate or retrieve session ID (30 minutes)
+  function getSessionId() {
+    var sessionKey = 'zappy_session_' + config.websiteId;
+    var session = null;
+    
+    try {
+      session = sessionStorage.getItem(sessionKey);
+      if (session) {
+        var sessionData = JSON.parse(session);
+        var now = Date.now();
+        
+        // Check if session is still valid
+        if (now - sessionData.timestamp < config.sessionDuration) {
+          // Update timestamp
+          sessionData.timestamp = now;
+          sessionStorage.setItem(sessionKey, JSON.stringify(sessionData));
+          return sessionData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: SessionStorage not available');
+    }
+    
+    // Generate new session ID
+    var newSessionId = 'zs_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      sessionStorage.setItem(sessionKey, JSON.stringify({
+        id: newSessionId,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      // Continue without session storage
+    }
+    
+    return newSessionId;
+  }
+  
+  var visitorId = getVisitorId();
+  var sessionId = getSessionId();
+  
+  // Track an event
+  function trackEvent(eventType, data) {
+    data = data || {};
+    
+    var eventData = {
+      website_id: config.websiteId,
+      event_type: eventType,
+      page_path: window.location.pathname,
+      referrer: document.referrer || 'direct',
+      visitor_id: visitorId,
+      session_id: sessionId,
+      metadata: data
+    };
+    
+    // Use sendBeacon if available (better for page unload events)
+    if (navigator.sendBeacon) {
+      var blob = new Blob([JSON.stringify(eventData)], { type: 'application/json' });
+      navigator.sendBeacon(config.apiUrl, blob);
+    } else {
+      // Fallback to fetch
+      fetch(config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData),
+        keepalive: true
+      }).catch(function(error) {
+        console.warn('Zappy Analytics: Failed to track event', error);
+      });
+    }
+  }
+  
+  // Track page view
+  if (config.trackPageViews) {
+    trackEvent('pageview', {
+      title: document.title,
+      url: window.location.href
+    });
+  }
+  
+  // Track clicks on important elements
+  if (config.trackClicks) {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      
+      // Track button clicks (counted as actions)
+      if (target.tagName === 'BUTTON' || target.closest('button')) {
+        var button = target.tagName === 'BUTTON' ? target : target.closest('button');
+        trackEvent('click', {
+          element: 'button',
+          text: button.textContent.trim().substring(0, 100),
+          id: button.id || null,
+          class: button.className || null
+        });
+      }
+      
+      // Track link clicks (navigation - not counted as actions)
+      else if (target.tagName === 'A' || target.closest('a')) {
+        var link = target.tagName === 'A' ? target : target.closest('a');
+        trackEvent('navigation', {
+          element: 'link',
+          text: link.textContent.trim().substring(0, 100),
+          href: link.href,
+          external: link.hostname !== window.location.hostname
+        });
+      }
+    }, true);
+  }
+  
+  // Track form submissions
+  if (config.trackFormSubmissions) {
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      
+      trackEvent('form_submit', {
+        form_id: form.id || null,
+        form_name: form.name || null,
+        form_action: form.action || null,
+        form_method: form.method || 'GET'
+      });
+    }, true);
+  }
+  
+  // Track time on page (send on page unload)
+  var pageLoadTime = Date.now();
+  
+  window.addEventListener('beforeunload', function() {
+    var timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000); // in seconds
+    
+    trackEvent('page_unload', {
+      time_on_page: timeOnPage,
+      page_path: window.location.pathname
+    });
+  });
+  
+  // Expose tracking function globally for custom events
+  window.zappyAnalytics = {
+    track: trackEvent,
+    getVisitorId: function() { return visitorId; },
+    getSessionId: function() { return sessionId; }
+  };
+  
+})();
+</script>
+<!-- End Zappy Analytics -->
+
+    <style id="zappy-dropdown-submenu-styles">
+      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
+      /* Base styles for dropdown submenus - parent must be positioned */
+      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
+      /* Submenu base - hidden by default */
+      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
+      /* CRITICAL: Desktop hover styles to show dropdown */
+      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Submenu item styling */
+      .sub-menu li { list-style: none; margin: 0; padding: 0; }
+      .sub-menu a { display: block !important; padding: 10px 16px !important; color: #333 !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
+      .sub-menu a:hover { background-color: #f5f5f5; }
+      /* RTL (Hebrew/Arabic) dropdown positioning */
+      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
+      /* Hide empty dropdown menus */
+      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))), .sub-menu:not(:has(li)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+      /* Desktop: show submenu on Menu Group hover */
+      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Menu Group title styling */
+      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
+      
+      /* ========== MOBILE SUBMENU STYLES ========== */
+      @media (max-width: 768px) {
+        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
+        .sub-menu.mobile-expanded { max-height: 500px !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
+        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
+        /* Disable hover behavior on mobile */
+        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; }
+        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; }
+        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
+        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: 44px !important; background: transparent !important; border: none !important; cursor: pointer !important; }
+        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
+        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
+        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
+        .sub-menu a { padding: 10px 0 !important; display: block !important; }
+        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; }
+      }
+      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
+    </style>
+</head>
+<body>
+  <nav class="navbar" dir="rtl">
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+    <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none;">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+  </button>
+  
+  <button class="phone-header-btn" aria-label="Call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+    </svg>
+  </button>
+  
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a href="/" class="logo-link">
+        <img src="/assets/business-logo.webp" alt="ביוטי פלזמה" class="logo" />
+      </a>
+    </div>
+    
+    <ul class="nav-menu" id="navMenu"><li><a href="/about">אודות</a></li><li><a href="/programs">תוכניות</a></li></ul>
+    
+    <div class="nav-cta-container">
+      <a href="/contact" class="nav-cta-btn">צור קשר</a>
+    </div>
+  </div>
+</nav>
+  
+  <main>
+    <section class="home-hero-section" data-layout-spec="בית-hero" data-hero-type="fullscreen-scrim">
+  <div class="home-hero-bg-wrapper">
+    <img data-hero-bg="true" data-placeholder="home-hero-bg" data-context="Microscopy-inspired abstract plasma background with organic gradients in deep purples and blues, soft bokeh-like particles, subtle contour lines suggesting scientific depth, gentle glow effects, no text or people, suitable for educational science brand" width="1920" height="1080" src="/assets/site-home-hero-bg.webp" alt="רקע מדעי אורגני" class="home-hero-bg-image">
+    <div class="home-hero-scrim" aria-hidden="true"></div>
+    <div class="home-hero-dot-pattern" aria-hidden="true"></div>
+  </div>
+  <div class="home-hero-content-wrapper">
+    <div class="home-hero-content">
+      <h3 class="home-hero-tagline">חינוך מבוסס-ראיות לדור החדש</h3>
+      <h1 class="home-hero-headline">למידה מדעית שמעוררת סקרנות ובונה ביטחון</h1>
+      <h3 class="home-hero-subtitle">תוכניות לימוד מותאמות אישית המשלבות מחקר עכשווי עם חוויות למידה מרתקות - לתלמידים, למורים ולכל מי שרוצה להבין את העולם לעומק</h3>
+      <div class="home-hero-cta-group">
+        <a href="/programs" class="home-hero-btn home-hero-btn-primary">גלו את התוכניות שלנו</a>
+        <a href="/contact" class="home-hero-btn home-hero-btn-secondary">צרו קשר</a>
+      </div>
+    </div>
+  </div>
+  <div class="home-hero-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="home-hero-fog-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:rgba(10,15,58,0);stop-"></stop>
+          <stop offset="40%" style="stop-color:rgba(123,60,255,0.08);stop-opacity:1"></stop>
+          <stop offset="70%" style="stop-color:rgba(181,222,59,0.12);stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:#F7F9FF;stop-opacity:1"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M0,120 L0,45 Q100,42 200,48 T400,44 Q500,50 600,46 T800,48 Q900,44 1000,50 T1200,46 L1200,120 Z" fill="url(#home-hero-fog-gradient)"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="home-capabilities-section" data-layout-spec="בית-capabilities">
+  <div class="home-capabilities-container">
+    <div class="home-capabilities-grid">
+      <div class="home-capabilities-intro">
+        <h2>מה תלמדו (ולמה זה נשאר)?</h2>
+        <p>הגישה שלנו מבוססת על ראיות מדעיות, הסברים ברורים ודוגמאות מהחיים האמיתיים. אנחנו לא רק מעבירים ידע – אנחנו בונים הבנה עמוקה שמאפשרת לכם להפעיל את הידע בביטחון ובדיוק.</p>
+      </div>
+      <div class="home-capabilities-visual-wrapper">
+        <img data-placeholder="home-capabilities-image-1" data-context="Minimal scientific diagram collage for plasma education business - clean line drawings of cellular structures, plasma waves, scientific equipment outlines, abstract molecular patterns - monochromatic style with subtle purple/blue tints, resembling scientific journal illustrations, no readable text, educational aesthetic" width="600" height="280" src="/assets/site-home-capabilities-image-1.webp" alt="דיאגרמות מדעיות ממחישות את עקרונות לימוד הפלזמה">
+        <div class="home-capabilities-cards">
+          <div class="home-capabilities-card">
+            <div class="home-capabilities-card-accent"></div>
+            <h3>שליטה במושגים</h3>
+            <p>הבנה מעמיקה של עקרונות הפלזמה והטכנולוגיה, מבסיס תיאורטי איתן ועד יישום מעשי מדויק.</p>
+          </div>
+          <div class="home-capabilities-card">
+            <div class="home-capabilities-card-accent"></div>
+            <h3>חשיבה מדעית</h3>
+            <p>פיתוח יכולת ניתוח וקבלת החלטות מושכלות מבוססות על הבנה ביולוגית ופיזיקלית של התהליכים.</p>
+          </div>
+          <div class="home-capabilities-card">
+            <div class="home-capabilities-card-accent"></div>
+            <h3>תרגול מודרך</h3>
+            <p>תרגול מעשי מפוקח עם משוב מיידי, המאפשר לכם לתרגם ידע לביצוע בטוח ומקצועי.</p>
+          </div>
+          <div class="home-capabilities-card">
+            <div class="home-capabilities-card-accent"></div>
+            <h3>ביטחון בהתקדמות</h3>
+            <p>מעקב אחר ההתפתחות האישית שלכם ובניית ביטחון עצמי בזמן אמת לאורך כל תהליך הלמידה.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="home-capabilities-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="contour-lines" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0,20 Q10,18 20,20 T40,20" stroke="rgba(11,16,51,0.08)" stroke-width="0.5" fill="none"></path>
+          <path d="M0,30 Q10,28 20,30 T40,30" stroke="rgba(11,16,51,0.06)" stroke-width="0.5" fill="none"></path>
+        </pattern>
+      </defs>
+      <path d="M0,80 L0,45 Q60,38 120,46 T240,42 Q300,48 360,40 T480,45 Q540,42 600,48 T720,43 Q780,46 840,41 T960,47 Q1020,43 1080,45 T1200,42 L1200,80 Z" fill="var(--bg-dark)"></path>
+      <path d="M0,45 Q60,38 120,46 T240,42 Q300,48 360,40 T480,45 Q540,42 600,48 T720,43 Q780,46 840,41 T960,47 Q1020,43 1080,45 T1200,42" stroke="url(#contour-lines)" stroke-width="1" fill="none" opacity="0.4"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="home-case-studies-section" data-layout-spec="בית-case-studies">
+  <div class="home-case-studies-container">
+    <div class="home-case-studies-intro">
+      <h2>סיפורים של לומדים אמיתיים</h2>
+      <p>הצלחות מוכחות ושינויים אמיתיים שהתרחשו בזכות לימודי הפלזמה שלנו</p>
+    </div>
+
+    <div class="home-case-studies-grid">
+      <!-- Case Study 1 -->
+      <article class="home-case-study home-case-study-1">
+        <div class="home-case-study-content">
+          <h3>מקורס בסיסי לפתיחת מכון מצליח</h3>
+          <p>שרה כהן הגיעה אלינו ללא ניסיון קודם בטיפולי פלזמה. תוך 3 חודשי לימוד וליווי, היא רכשה את הידע המעשי והביטחון הנדרש לפתוח מכון יופי עצמאי.</p>
+          <div class="home-case-study-outcomes">
+            <p><strong>שליטה מלאה בטכניקות:</strong> התמחות בטיפולי פיברובלסט ופלזמה פן</p>
+            <p><strong>ביטחון מקצועי:</strong> יכולת לטפל ב-15 לקוחות בשבוע עם תוצאות מצוינות</p>
+          </div>
+        </div>
+        <div class="home-case-study-image-wrapper">
+          <img data-placeholder="home-case-studies-image-1" data-context="Professional beauty plasma treatment training session in Israel - close-up of hands performing plasma pen fibroblast procedure on practice skin, scientific educational environment, modern clinic setting with training equipment, professional lighting, educational atmosphere" width="600" height="400" src="/assets/site-home-case-studies-image-1.webp" alt="אימון מעשי בטיפול פלזמה במכון ביוטי פלזמה">
+          <p class="home-case-study-caption">סביבה לימודית מעשית עם ציוד מתקדם</p>
+        </div>
+      </article>
+
+      <!-- Case Study 2 -->
+      <article class="home-case-study home-case-study-2">
+        <div class="home-case-study-image-wrapper">
+          <img data-placeholder="home-case-studies-image-2" data-context="Israeli beauty professional studying plasma treatment theory - notebook with detailed anatomical diagrams and plasma pen technique notes, microscopy textures in background, scientific educational materials, classroom-lab hybrid environment, professional learning atmosphere" width="600" height="400" src="/assets/site-home-case-studies-image-2.webp" alt="חומרי לימוד מתקדמים בקורס פלזמה">
+          <p class="home-case-study-caption">חומרי לימוד מקצועיים ומפורטים</p>
+        </div>
+        <div class="home-case-study-content">
+          <h3>מקוסמטיקאית לבעלת מומחיות בפלזמה</h3>
+          <p>רונית לוי, קוסמטיקאית מנוסה, חיפשה התמחות שתייחד אותה בשוק. הקורס שלנו העניק לה את הידע המדעי והמעשי להוסיף שירותי פלזמה מתקדמים למכון שלה.</p>
+          <div class="home-case-study-outcomes">
+            <p><strong>הבנה מדעית מעמיקה:</strong> שליטה בפיזיולוגיה של העור ומנגנוני הפלזמה</p>
+            <p><strong>הרחבת שירותים:</strong> תוספת של 8 טיפולים חדשים לתפריט המכון תוך חודש אחד</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Bottom Divider -->
+  <div class="home-case-studies-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="home-case-studies-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:var(--bg-dark);stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:var(--bg-light);stop-opacity:1"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M0,80 L0,0 L1200,80 L1200,80 Z" fill="url(#home-case-studies-gradient)"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="home-testimonials-section" data-layout-spec="בית-testimonials">
+  <div class="home-testimonials-container">
+    <div class="home-testimonials-header">
+      <h2>אנשים סקרנים סומכים עלינו</h2>
+      <p>תוצאות ברורות, מבנה מוכח, וניסיון של שנים בהעברת ידע מדעי באופן נגיש ומעשיר</p>
+    </div>
+
+    <div class="home-testimonials-grid">
+      <div class="home-testimonials-card">
+        <h3>הורה מעורב</h3>
+        <p>"הקורס פתח לי עולם שלם של הבנה מדעית שיכולתי לשתף עם הילדים שלי. המבנה ברור, ההסברים מדויקים, והכי חשוב - זה עורר בנו סקרנות משותפת. עכשיו אנחנו מדברים על פלזמה בארוחות ערב ומתנסים ביחד בניסויים פשוטים בבית."</p>
+      </div>
+
+      <div class="home-testimonials-card">
+        <h3>תלמיד תיכון</h3>
+        <p>"חשבתי שמדע זה משעמם עד שהגעתי לכאן. הגישה שונה לגמרי - לא רק תיאוריה אלא הבנה אמיתית של איך הדברים עובדים. הביטחון שלי בפיזיקה עלה פלאים, והציונים שלי השתפרו באופן משמעותי. זה לא סתם לימוד, זה חוויה שמשנה את הדרך שבה אתה חושב."</p>
+      </div>
+
+      <div class="home-testimonials-card">
+        <h3>לומד לכל החיים</h3>
+        <p>"בגיל 52 החלטתי שאני רוצה להבין את העולם המדעי שמסביבי. התוכן כאן מובנה בצורה מעולה - מתחיל מהבסיס ועולה בהדרגה. המרצים סבלניים, החומרים ברורים, והתחושה של הישג כשמבינים משהו חדש היא פשוט מדהימה. מומלץ בחום לכל מי שמחפש ידע איכותי."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-testimonials-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 3" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="testimonials-divider-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#2563EB;stop-opacity:1"></stop>
+          <stop offset="60%" style="stop-color:#2563EB;stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:#2563EB;stop-"></stop>
+        </linearGradient>
+        <pattern id="testimonials-dots" x="0" y="0" width="20" height="3" patternUnits="userSpaceOnUse">
+          <circle cx="10" cy="1.5" r="1" fill="#2563EB" opacity="0.4"></circle>
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="720" height="3" fill="url(#testimonials-divider-gradient)"></rect>
+      <rect x="720" y="0" width="480" height="3" fill="url(#testimonials-dots)"></rect>
+    </svg>
+  </div>
+</section>
+
+<section class="home-cta-section" data-layout-spec="בית-cta">
+  <div class="home-cta-container">
+    <div class="home-cta-content">
+      <h2 class="home-cta-heading">מוכנים ללמוד בבהירות?</h2>
+      <p class="home-cta-text">ספרו לנו על המטרות שלכם ונציע לכם את הצעד הבא המתאים ביותר. אנחנו כאן כדי לעזור לכם להתקדם בביטחון בתחום לימודי פלזמה.</p>
+      <a href="/contact" class="home-cta-button btn-primary">צור קשר</a>
+      <p class="home-cta-reassurance"><small>אנחנו חוזרים תוך 24 שעות עבודה</small></p>
+    </div>
+  </div>
+  
+  <div class="home-cta-plasma-halo" aria-hidden="true"></div>
+  <svg class="home-cta-contour-pattern" data-no-icon-edit="true" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="contour-lines-cta" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+        <path d="M0,20 Q30,15 60,20 T120,20 M0,50 Q30,45 60,50 T120,50 M0,80 Q30,75 60,80 T120,80 M0,110 Q30,105 60,110 T120,110" stroke="rgba(181,222,59,0.06)" stroke-width="1" fill="none"></path>
+      </pattern>
+    </defs>
+    <rect width="1200" height="800" fill="url(#contour-lines-cta)"></rect>
+  </svg>
+</section>
+  </main>
+  
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-column footer-about">
+        <img src="/assets/business-logo.webp" alt="ביוטי פלזמה" class="logo" />
+        <p class="footer-description">מרכז מוביל לחינוך ומדע, מציע תוכניות חדשניות ומקצועיות בתחום הביוטכנולוגיה והפלזמה.</p>
+        <div class="social-links">
+          <a href="[facebook_handle]" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="[instagram_handle]" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="[whatsapp_handle]" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column footer-links">
+        <h3 class="footer-title">קישורים מהירים</h3>
+        <ul class="footer-menu">
+          <li><a href="/about">אודות</a></li>
+          <li><a href="/programs">תוכניות</a></li>
+          <li><a href="/contact">צור קשר</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column footer-contact">
+        <h3 class="footer-title">יצירת קשר</h3>
+        <ul class="contact-info">
+          <li>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:[business_email]">[business_email]</a>
+          </li>
+          <li>
+            <i class="fas fa-phone"></i>
+            <a href="tel:[business_phone]">[business_phone]</a>
+          </li>
+          <li><a href="/"><i class="fas fa-map-marker-alt"></i>
+            <span>[business_address]</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column footer-legal">
+        <h3 class="footer-title">מידע משפטי</h3>
+        <ul class="footer-menu">
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms &amp; Conditions</a></li>
+          <li><a href="/accessibility">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p class="copyright">© 2026 ביוטי פלזמה. All rights reserved.</p>
+      <a href="https://zappy5.com" target="_blank" class="zappy-attribution">Generated by Zappy</a>
+    </div>
+  </div>
+</footer>
+  
+  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  
+  <script src="/script.js"></script>
+
+    <div data-integration="accessibility:toolbar"></div>
+
+    <script id="zappy-mobile-submenu-script">
+    (function() {
+      function initMobileSubmenuToggles() {
+        if (window.innerWidth > 768) {
+          document.querySelectorAll('.mobile-submenu-toggle').forEach(function(btn) { btn.remove(); });
+          document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) { menu.classList.remove('mobile-expanded'); });
+          return;
+        }
+        var items = document.querySelectorAll('.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)');
+        items.forEach(function(li) {
+          if (li.querySelector('.mobile-submenu-toggle')) return;
+          var submenu = li.querySelector('.sub-menu');
+          var parentLink = li.querySelector(':scope > a');
+          if (!submenu || !parentLink) return;
+          var toggleBtn = document.createElement('button');
+          toggleBtn.className = 'mobile-submenu-toggle';
+          toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+          toggleBtn.setAttribute('type', 'button');
+          parentLink.insertAdjacentElement('afterend', toggleBtn);
+          toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+              if (menu !== submenu) { menu.classList.remove('mobile-expanded'); var t = menu.parentElement.querySelector('.mobile-submenu-toggle'); if(t) t.classList.remove('expanded'); }
+            });
+            submenu.classList.toggle('mobile-expanded');
+            toggleBtn.classList.toggle('expanded');
+          });
+        });
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initMobileSubmenuToggles); }
+      else { initMobileSubmenuToggles(); }
+      var resizeTimer; window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(initMobileSubmenuToggles, 250); });
+      // Re-initialize when mobile menu becomes visible (MutationObserver)
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes') {
+            var target = mutation.target;
+            if (target.classList && (target.classList.contains('active') || target.classList.contains('open'))) {
+              setTimeout(initMobileSubmenuToggles, 100);
+            }
+          }
+        });
+      });
+      setTimeout(function() {
+        document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu, nav').forEach(function(menu) {
+          observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
+        });
+      }, 500);
+    })();
+    </script>
+</body></html>

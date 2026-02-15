@@ -1,0 +1,53 @@
+# ביוטי פלזמה — Generative Engine Optimization Map
+
+> A חינוך ומדע business.
+
+---
+
+## Pages
+
+### בית
+https://-00f7f3b5.zappy5.app
+
+### אודות
+https://-00f7f3b5.zappy5.app/about
+
+### תוכניות
+https://-00f7f3b5.zappy5.app/programs
+
+### צור קשר
+https://-00f7f3b5.zappy5.app/contact
+
+## Legal & Policy
+
+### Privacy Policy
+https://-00f7f3b5.zappy5.app/privacy
+Information about how user data is collected, stored, and protected.
+
+### Terms & Conditions
+https://-00f7f3b5.zappy5.app/terms
+Legal terms describing service usage, rights, and policies.
+
+### Accessibility Statement
+https://-00f7f3b5.zappy5.app/accessibility
+Information about WCAG compliance and accessibility features.
+
+---
+
+# Business Context (for LLM understanding)
+
+## About ביוטי פלזמה
+ביוטי פלזמה is a business in the חינוך ומדע industry.
+
+## Target Audience
+- בעלי מכוני יופי
+
+## Industry
+חינוך ומדע
+
+---
+
+# Additional Resources
+
+- **Sitemap**: https://-00f7f3b5.zappy5.app/sitemap.xml
+- **Robots.txt**: https://-00f7f3b5.zappy5.app/robots.txt
